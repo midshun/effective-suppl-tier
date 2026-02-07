@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>筋トレサプリの優先度｜本当に必要なのは？メタ分析でティア分け</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 16px;
+      line-height: 1.9;
+      color: #333;
+      background-color: #fff;
+    }
+
+    /* ヘッダー */
+    .header {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      background-image: url('header.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .header-title {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .header-title h1 {
+      display: inline;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 8px 20px;
+      line-height: 2.4;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    /* メインコンテンツ */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* 導入文 */
+    .intro {
+      margin-bottom: 50px;
+    }
+
+    .intro p {
+      margin-bottom: 1.5em;
+    }
+
+    .note {
+      background-color: #f8f8f8;
+      border-left: 4px solid #666;
+      padding: 16px 20px;
+      margin: 30px 0;
+      font-size: 14px;
+    }
+
+    /* 目次 */
+    .toc {
+      background-color: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      padding: 30px;
+      margin-bottom: 50px;
+    }
+
+    .toc-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #333;
+    }
+
+    .toc-list {
+      list-style: none;
+    }
+
+    .toc-list > li {
+      margin-bottom: 12px;
+    }
+
+    .toc-list a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .toc-list a:hover {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+
+    .toc-sublist {
+      list-style: none;
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .toc-sublist li {
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    /* セクション */
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #333;
+    }
+
+    h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 40px 0 20px;
+      padding-left: 15px;
+      border-left: 4px solid #333;
+    }
+
+    p {
+      margin-bottom: 1.5em;
+    }
+
+    /* ティア表画像 */
+    .tier-image {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .tier-image img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #e0e0e0;
+    }
+
+    /* 評価基準リスト */
+    .criteria-list {
+      margin: 20px 0 30px;
+    }
+
+    .criteria-list dt {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .criteria-list dd {
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    /* 出典 */
+    .source {
+      background-color: #f5f5f5;
+      padding: 15px 20px;
+      margin: 25px 0;
+      font-size: 13px;
+      border-radius: 4px;
+    }
+
+    .source a {
+      color: #0066cc;
+      word-break: break-all;
+    }
+
+    /* 補足ボックス */
+    .supplement-box {
+      background-color: #fff8e6;
+      border: 1px solid #f0d58c;
+      padding: 20px;
+      margin: 25px 0;
+      font-size: 14px;
+    }
+
+    /* 注釈 */
+    .annotation {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* まとめ */
+    .summary-list {
+      margin: 20px 0;
+    }
+
+    .summary-list dt {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .summary-list dd {
+      margin-bottom: 20px;
+      padding-left: 0;
+    }
+
+    /* プロフィール */
+    .profile {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    /* フッター */
+    footer {
+      background-color: #f5f5f5;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* レスポンシブ */
+    @media (max-width: 600px) {
+      .header {
+        height: 300px;
+      }
+
+      .header-title h1 {
+        font-size: 20px;
+        padding: 10px 16px;
+      }
+
+      .container {
+        padding: 40px 16px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+
+      .toc {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-title">
+      <h1>筋トレサプリの優先度｜本当に必要なのは？<br>メタ分析でティア分け</h1>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="container">
+
+    <!-- 導入文 -->
+    <div class="intro">
+      <p>プロテイン、BCAA、EAA、HMB……情報が多すぎて「結局どれから手を出せばいいの？」と感じたことはありませんか。</p>
+      <p>この記事では、メタ分析（複数の研究結果を統合して結論を導く手法）をはじめとする信頼性の高い研究を参考に、一般的なトレーニーにとっての優先度という視点でサプリをティア形式に整理しました。</p>
+      <p>ただし、筋トレの目的は人それぞれです。筋肥大、ダイエット、健康維持など、目的によって重視すべきサプリは変わります。「これさえ飲めば大丈夫」という万能サプリは存在しません。本記事では目的別の補足も加えていますので、ご自身に合ったサプリ選びの参考にしてください。</p>
+      
+      <div class="note">
+        ※このティア表だけで判断せず、必ず本文もあわせてご覧ください。サプリの優先度には前提条件があります。
+      </div>
+
+      <!-- ティア表画像 -->
+      <div class="tier-image">
+        <img src="tier.png" alt="筋トレサプリ ティアリスト">
+      </div>
+    </div>
+
+    <!-- 目次 -->
+    <nav class="toc">
+      <div class="toc-title">目次</div>
+      <ol class="toc-list">
+        <li><a href="#criteria">評価基準</a></li>
+        <li>
+          <a href="#s-tier">Sティア：優先的に検討すべきサプリ</a>
+          <ul class="toc-sublist">
+            <li><a href="#protein">プロテイン</a></li>
+            <li><a href="#creatine">クレアチン</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#a-tier">Aティア：補助として有効なサプリ</a>
+          <ul class="toc-sublist">
+            <li><a href="#caffeine">カフェイン</a></li>
+            <li><a href="#maltodextrin">マルトデキストリン</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#b-tier">Bティア：優先度は低いが、条件次第で検討の余地あり</a>
+          <ul class="toc-sublist">
+            <li><a href="#omega3">オメガ3（フィッシュオイル）</a></li>
+            <li><a href="#multivitamin">マルチビタミン</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#c-tier">Cティア：現時点では優先度が低い</a>
+          <ul class="toc-sublist">
+            <li><a href="#eaa-bcaa">EAA・BCAA</a></li>
+            <li><a href="#hmb">HMB</a></li>
+            <li><a href="#glutamine">グルタミン</a></li>
+          </ul>
+        </li>
+        <li><a href="#note">「研究が少ない＝効果がない」ではない</a></li>
+        <li><a href="#summary">まとめ</a></li>
+      </ol>
+    </nav>
+
+    <!-- 評価基準 -->
+    <section id="criteria">
+      <h2>評価基準</h2>
+      
+      <h3>なぜ「研究ベース」で評価するのか</h3>
+      <p>サプリメント業界では、販売促進のために効果が誇張されることが珍しくありません。</p>
+      <p>インフルエンサーやフィットネス系YouTuberの商品レビューには広告報酬が発生していたり、自身でサプリを製造・販売しているケースもあります。自分の商品を売るために特定の成分の効果を過大評価している可能性も否定できません。</p>
+      <p>そのため、純粋な「おすすめ」とは言い切れない構造があることを知っておく必要があります。</p>
+      <p>本記事では、こうしたマーケティングの影響を排除するため、<strong>利益相反のない（または開示されている）学術研究</strong>を中心に評価を行っています。</p>
+      <p class="annotation">※利益相反：判断や発信に影響しうる経済的な利害関係があること</p>
+
+      <p>そして以下の4つの観点から評価していきます。</p>
+
+      <dl class="criteria-list">
+        <dt>① エビデンスの量と質</dt>
+        <dd>ランダム化比較試験（RCT）やメタ分析で、一貫した結果が示されているかを重視。一部の研究で肯定的でも、再現性が乏しい場合は優先度を低く設定しています。</dd>
+        
+        <dt>② 効果の再現性と体感のしやすさ</dt>
+        <dd>研究環境下だけでなく、実際のトレーニング環境でも効果を実感しやすいかを考慮しています。</dd>
+        
+        <dt>③ 食事で代替可能か</dt>
+        <dd>通常の食事から十分に摂取できる成分は、サプリとしての優先度を低く評価しています。</dd>
+        
+        <dt>④ 対象者の幅</dt>
+        <dd>初心者・高齢者・極端な食事制限下など、特定条件でのみ効果を示すものはティアを下げています。ここでいう「対象者の幅」とは、特定の条件に限られず、多くのトレーニーで効果が確認されているかどうかを指します。</dd>
+      </dl>
+    </section>
+
+    <!-- Sティア -->
+    <section id="s-tier">
+      <h2>Sティア：優先的に検討すべきサプリ</h2>
+      <p>Sティアは、研究量が豊富で効果の再現性が高く、初心者から上級者まで幅広い層で有効性が確認されているサプリです。筋トレを本格的に行うなら、まず検討すべき存在と言えます。</p>
+
+      <h3 id="protein">プロテイン</h3>
+      <p>プロテインは、筋トレサプリの中で最も研究量が多く、位置づけが明確な存在です。初心者から上級者、若年層から高齢者まで、トレーニングを行うほぼすべての人にとって有効性が示されている数少ないサプリでもあります。</p>
+      <p>ただし、ここでプロテインの役割を正しく整理して理解しておく必要があります。</p>
+      <p>筋肥大や筋力向上において重要なのは、プロテインという製品を飲むことではなく、<strong>1日のたんぱく質摂取量を十分に確保できているかどうか</strong>です。</p>
+      <p>一般的に、筋肥大を目的とする場合は体重1kgあたり1.4〜2.0g程度のたんぱく質摂取が推奨されています。体重70kgの人なら、1日に112〜154g。これを食事だけで摂ろうとすると、鶏むね肉なら500g以上、卵なら18個以上に相当します。現実的には、毎日の食事だけでこの量を安定して確保するのは簡単ではありません。</p>
+      <p>プロテインは、この不足分を手軽に補う手段として機能します。逆に、すでに食事から十分なたんぱく質を摂れているなら、追加でプロテインを摂っても効果が上乗せされるとは限りません。</p>
+      <p>「飲めば筋肉がつく魔法の粉」ではなく、食事だけでは足りないたんぱく質を補うための手段。そう考えるのが適切です。</p>
+
+      <div class="source">
+        出典: Jäger R, et al. (2017). International Society of Sports Nutrition Position Stand: protein and exercise. Journal of the International Society of Sports Nutrition, 14, 20.<br>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC5477153/</a>
+      </div>
+
+      <h3 id="creatine">クレアチン</h3>
+      <p>クレアチンは、数少ない「直接的なパフォーマンス向上」が一貫して報告されている成分です。プロテインと同様に、初心者から上級者、若年層から高齢者まで幅広い対象で効果が確認されている点が、Sティアに位置づけた大きな理由です。</p>
+      <p>多くの研究で、高強度・短時間運動のパフォーマンス向上や、筋力・筋量の増加にプラスの影響が示されています。特にレジスタンストレーニングや高重量トレーニングを行う方には効果が現れやすい傾向があります。近年では、高齢者の筋力維持や認知機能への好影響を示唆する研究も増えています。</p>
+      <p>「クレアチンを摂ると髪が抜ける」という噂を耳にしたことがある方もいるかもしれません。これは2009年の1件の研究で、クレアチン摂取によりDHT（ジヒドロテストステロン）という薄毛に関連するホルモンが増加したという報告に端を発しています。</p>
+      <p>しかし、この結果はその後の研究で再現されておらず、クレアチンと脱毛の因果関係を示すエビデンスは現時点では存在しません。ISSNをはじめとする複数の学術機関も、クレアチンの安全性を支持しています。</p>
+      <p>ただし、トレーニング強度が低い場合や、体質的に反応が乏しい場合は体感しにくいこともあります。また、体内水分量の増加による体重増加が起こることがあり、競技によっては注意が必要です。</p>
+
+      <div class="source">
+        出典: Wang Z, et al. (2024). Effects of Creatine Supplementation and Resistance Training on Muscle Strength Gains in Adults <50 Years of Age: A Systematic Review and Meta-Analysis. Nutrients, 16(21), 3665.<br>
+        <a href="https://www.mdpi.com/2072-6643/16/21/3665" target="_blank" rel="noopener">https://www.mdpi.com/2072-6643/16/21/3665</a>
+      </div>
+    </section>
+
+    <!-- Aティア -->
+    <section id="a-tier">
+      <h2>Aティア：補助として有効なサプリ</h2>
+      <p>Aティアは、筋肥大そのものを直接促進するわけではありませんが、トレーニングの質や効率を高める補助として有効なサプリです。食事や普通の飲料で代替可能な面もありますが、利便性や即効性を重視する方には選択肢になります。</p>
+
+      <h3 id="caffeine">カフェイン</h3>
+      <p>カフェインは、主観的な疲労感の軽減、集中力の向上、一時的なパフォーマンス向上が期待できる成分です。</p>
+      <p>ただし、筋肥大そのものを直接促進するわけではなく、あくまで「トレーニングをやり切りやすくする」補助的な役割です。日常的にカフェインを多く摂取している方、感受性が高すぎる／低すぎる方、睡眠に悪影響が出る方は、メリットよりデメリットが上回る可能性があります。</p>
+
+      <div class="source">
+        出典: Abalo R, et al. (2021). Trait Energy and Fatigue Modify the Effects of Caffeine on Mood, Cognitive and Fine-Motor Task Performance: A Post-Hoc Study. Nutrients, 13(2), 412.<br>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7912474/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC7912474/</a>
+      </div>
+
+      <h3 id="maltodextrin">マルトデキストリン</h3>
+      <p>マルトデキストリンは、サプリというより「素早く吸収できる炭水化物源」として位置づけるのが適切です。</p>
+      <p>長時間・高ボリュームのトレーニングでは、運動中や前後の炭水化物補給がパフォーマンス維持に寄与します。また、トレーニング後にプロテインと一緒に摂取することで、インスリン分泌が促進され、筋肉への栄養素の取り込みがスムーズになるとされています。</p>
+      <p>吸収の早いマルトデキストリンとプロテインの組み合わせは、効率的なリカバリーを重視するトレーニーには理にかなった選択です。</p>
+      <p>一方で、1回60分前後の一般的な筋トレで、通常の食事をきちんと摂っている場合は、おにぎりやバナナなど普通の食品で十分に代替可能です。わざわざサプリとして購入する必要があるかは、トレーニング量や食事のタイミングによって判断してください。</p>
+
+      <div class="source">
+        出典: Wilburn DT, et al. (2020). Acute Maltodextrin Supplementation During Resistance Exercise. Journal of Sports Science and Medicine, 19(2), 282-288.<br>
+        <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7196753/" target="_blank" rel="noopener">https://pmc.ncbi.nlm.nih.gov/articles/PMC7196753/</a>
+      </div>
+    </section>
+
+    <!-- Bティア -->
+    <section id="b-tier">
+      <h2>Bティア：優先度は低いが、条件次第で検討の余地あり</h2>
+      <p>Bティアは、健康維持の観点では一定の意義があるものの、筋肥大・筋力向上への直接的な効果は限定的なサプリです。食事内容に偏りがある場合や、特定の健康目的がある場合に検討する程度で十分でしょう。</p>
+
+      <h3 id="omega3">オメガ3（フィッシュオイル）</h3>
+      <p>オメガ3脂肪酸（EPA・DHA）は、抗炎症作用や心血管系の健康維持に関するエビデンスが豊富な成分です。</p>
+      <p>筋トレとの関連では、一部の研究で筋タンパク質合成の促進や筋肉痛の軽減が示唆されています。しかし、2019年のメタ分析（Huangら）では、オメガ3摂取が筋力や筋肉量に与える影響は小さく、統計的に有意な効果は確認されなかったと報告されています。</p>
+      <p>一方、高齢者を対象とした研究では、筋肉量の維持や筋力低下の抑制に寄与する可能性が示されており、加齢に伴う筋肉の衰え（サルコペニア）対策としては注目されています。</p>
+      <p>一般的なトレーニーにとっては、青魚（サバ、サーモン、イワシなど）を週2〜3回摂取していれば、サプリで補う必要性は低いと考えられます。魚をほとんど食べない方や、炎症管理・全身の健康維持を重視する方には検討の余地があります。</p>
+
+      <div class="source">
+        出典: Huang YH, et al. (2020). Effects of Omega-3 Fatty Acids on Muscle Mass, Muscle Strength and Muscle Performance among the Elderly: A Meta-Analysis. Nutrients, 12(12), 3739.<br>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/33291698/" target="_blank" rel="noopener">https://pubmed.ncbi.nlm.nih.gov/33291698/</a>
+      </div>
+
+      <h3 id="multivitamin">マルチビタミン</h3>
+      <p>マルチビタミンは、ビタミンやミネラルを幅広くカバーできる便利なサプリですが、筋肥大や筋力向上に直接寄与するというエビデンスは乏しいのが現状です。</p>
+      <p>2020年のコクランレビューでは、健康な成人がマルチビタミンを摂取しても、全体的な死亡リスクや慢性疾患の予防に明確な効果は認められなかったと結論づけています。また、筋トレのパフォーマンスや筋肥大に関しても、マルチビタミン単独で有意な差が出たという質の高い研究は限られています。</p>
+      <p class="annotation">※コクランレビュー：国際的な非営利組織が厳格な基準で作成する系統的レビュー</p>
+      <p>ビタミンやミネラルの不足はパフォーマンス低下の原因になり得ますが、バランスの取れた食事を摂っていれば、深刻な欠乏状態になることは稀です。</p>
+      <p>以下のような条件に当てはまる場合は、補助的に活用する意義があるかもしれません。</p>
+      <ul style="margin: 20px 0; padding-left: 25px;">
+        <li>極端なカロリー制限中（減量期など）</li>
+        <li>食事のバリエーションが少ない</li>
+        <li>特定の栄養素が不足しがちな食生活</li>
+      </ul>
+      <p>ただし、「飲んでいれば安心」と食事を疎かにするのではなく、あくまで食事を補う目的で活用するのが適切です。</p>
+
+      <div class="source">
+        出典: Yetley EA. (2007). Multivitamin and multimineral dietary supplements: definitions, characterization, bioavailability, and drug interactions. The American Journal of Clinical Nutrition, 85(1), 269S-276S.<br>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/17209208/" target="_blank" rel="noopener">https://pubmed.ncbi.nlm.nih.gov/17209208/</a>
+      </div>
+    </section>
+
+    <!-- Cティア -->
+    <section id="c-tier">
+      <h2>Cティア：現時点では優先度が低い</h2>
+      <p>Cティアは、理論上の可能性や一部の研究で効果が示唆されているものの、一般的なトレーニーにとっては食事やプロテインで代替できることが多いサプリです。特定の条件下（高齢者、極端なカロリー制限中など）では補助的な役割を果たす可能性がありますが、優先して取り入れる必要はないと考えています。</p>
+
+      <h3 id="eaa-bcaa">EAA・BCAA</h3>
+      <p>EAA（必須アミノ酸）やBCAA（分岐鎖アミノ酸）は、プロテインや食事から十分なたんぱく質を摂取していれば、その役割の多くがカバーされます。</p>
+      <p>1日のたんぱく質摂取量が確保できている場合、EAAやBCAAを個別に追加する意義は限定的です。</p>
+
+      <div class="source">
+        出典: Wolfe RR. (2017). Branched-chain amino acids and muscle protein synthesis in humans: myth or reality? Journal of the International Society of Sports Nutrition, 14, 30.<br>
+        <a href="https://pubmed.ncbi.nlm.nih.gov/28852372/" target="_blank" rel="noopener">https://pubmed.ncbi.nlm.nih.gov/28852372/</a>
+      </div>
+
+      <h3 id="hmb">HMB</h3>
+      <p>HMBはロイシンの代謝産物であり、筋分解の抑制や筋肉量の維持に効果があるとされています。</p>
+      <p>HMBは、記事や論文によって評価が大きく分かれるサプリの代表格です。ISSN（国際スポーツ栄養学会）はHMBを比較的高く評価していますが、その公式見解を発表した著者の中にはHMB関連企業との利益相反が開示されている人物もいます。これは直ちに研究の価値を否定するものではありませんが、解釈には注意が必要です。</p>
+      <p>一方、その他の主要な機関の独立した研究では、効果が小さい、または有意差が確認されないという報告も少なくありません。</p>
+      <p>トレーニング初心者や高齢者、カロリー制限中など特定の条件下では有効性が示唆されることもありますが、すでに十分なたんぱく質を摂取している一般的なトレーニーにとっては、優先度は高くないと評価しています。</p>
+
+      <div class="source">
+        出典: Rathmacher JA, et al. (2024). International society of sports nutrition position stand: β-hydroxy-β-methylbutyrate (HMB). Journal of the International Society of Sports Nutrition, 21(1), 2434734.<br>
+        <a href="https://www.tandfonline.com/doi/full/10.1080/15502783.2024.2434734" target="_blank" rel="noopener">https://www.tandfonline.com/doi/full/10.1080/15502783.2024.2434734</a>
+      </div>
+
+      <h3 id="glutamine">グルタミン</h3>
+      <p>グルタミンは体内に豊富に存在するアミノ酸で、理論上は筋分解の抑制、回復の補助、免疫機能への関与が示唆されています。</p>
+      <p>しかし、健康なトレーニーを対象とした研究では、筋肥大や筋力向上に明確な上乗せ効果を示した結果は限定的です。高強度トレーニングを行い、たんぱく質摂取量が十分な条件下では、グルタミン単独摂取による明確な差は確認されていません。</p>
+
+      <div class="source">
+        出典: Ramezani Ahmadi A, et al. (2019). The effect of glutamine supplementation on athletic performance, body composition, and immune function: A systematic review and a meta-analysis of clinical trials. Clinical Nutrition, 38(3), 1076-1091.<br>
+        <a href="https://www.sciencedirect.com/science/article/abs/pii/S0261561418301730" target="_blank" rel="noopener">https://www.sciencedirect.com/science/article/abs/pii/S0261561418301730</a>
+      </div>
+
+      <div class="supplement-box">
+        <strong>補足：</strong>グルタミンは腸粘膜や免疫細胞の主要なエネルギー源として、重症患者や術後の栄養管理、点滴（アミノ酸輸液）など医療現場で重要視されてきた背景があります。ただし、これは強い侵襲や摂取制限下を前提とした話であり、健康なトレーニーにそのまま当てはまるとは限りません。
+      </div>
+    </section>
+
+    <!-- 注意点 -->
+    <section id="note">
+      <h2>「研究が少ない＝効果がない」ではない</h2>
+      <p>重要な注意点として、研究が少ない、あるいは結果が一貫していないことは、効果がないことの証明ではありません。</p>
+      <p>ただし、サプリの優先度を決めるうえでは「研究量が多いか」「結果が再現されているか」「実生活で体感しやすいか」という観点が重要です。本記事では効果を否定するのではなく、あくまで優先度という観点から評価しています。</p>
+    </section>
+
+    <!-- まとめ -->
+    <section id="summary">
+      <h2>まとめ</h2>
+      <p>筋トレサプリの優先度をティア形式で整理しました。</p>
+
+      <dl class="summary-list">
+        <dt>Sティア（プロテイン・クレアチン）</dt>
+        <dd>研究量・効果の再現性・対象者の幅すべてにおいて頭一つ抜けた存在です。筋トレを本格的に行うなら、最初に検討する価値があります。</dd>
+
+        <dt>Aティア（カフェイン・マルトデキストリン）</dt>
+        <dd>筋肥大を直接促進するわけではありませんが、トレーニングの質や効率を高める補助として有効です。食事や飲料で代替できる面もあるため、利便性や即効性を求める方向けです。</dd>
+
+        <dt>Bティア（オメガ3・マルチビタミン）</dt>
+        <dd>健康維持には意義がある場合もありますが、筋肥大・筋力向上を目的とするなら優先度は高くありません。食生活の偏りが気になる方が、必要に応じて取り入れる程度で十分です。</dd>
+
+        <dt>Cティア（EAA・BCAA・HMB・グルタミン）</dt>
+        <dd>食事やプロテインで代替できることが多く、一般的なトレーニーにとっては優先度が低いと評価しています。</dd>
+      </dl>
+
+      <p>最後に強調しておきたいのは、どんなサプリも「魔法の薬」ではないということ。サプリはあくまで補助であり、食事・トレーニング・睡眠という土台が整っていなければ効果は発揮されません。</p>
+      <p>また、ネットやSNSで目にするサプリ情報の中には、広告収入やアフィリエイト報酬と結びついたものも少なくありません。「誰が、何の目的で発信しているのか」を意識することが、正しいサプリ選びの第一歩かもしれません。</p>
+      <p>まずは食事・トレーニング・睡眠といった土台を整えたうえで、自分に本当に必要なものを見極めてください。</p>
+    </section>
+
+    <!-- プロフィール -->
+    <section class="profile">
+      <h2>運営者について</h2>
+      <p>筋トレ歴2年。自分自身がサプリ選びで迷った経験から、研究論文をもとに情報を整理するようになりました。</p>
+      
+      <h3 style="margin-top: 30px; padding-left: 0; border-left: none; font-size: 18px;">サイトについて</h3>
+      <p>本サイトは、筋トレ・栄養に関する研究論文やメタ分析をもとに情報を整理・解説する個人運営サイトです。特定の製品やサプリメントの推奨・販売を目的としておらず、可能な限り中立的な立場で情報を扱うことを心がけています。なお、本サイトの内容は医療行為や診断を目的としたものではありません。</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 筋トレサプリガイド</p>
+  </footer>
+
+</body>
+</html>
